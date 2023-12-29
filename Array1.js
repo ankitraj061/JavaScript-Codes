@@ -55,7 +55,7 @@
 // console.log(user)
 
 
-
+`   `
 let arr5=[10,20,30]
 arr5.reverse()
 console.log(arr5)
