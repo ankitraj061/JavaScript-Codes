@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url(./background.jpg);
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            margin: 0 auto;
+            border-radius: 5px;
+            padding: 20px;
+            border: 1px solid #444;
+            box-shadow: 0 0 10px #444;
+            background-color: #1e1e1e;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            font-size: large;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            margin-bottom: 20px;
+            width: 100%;
+            background-color: #2e2e2e;
+            color: #e0e0e0;
+        }
+
+        .btn {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            width: 30%;
+            height: 100%;
+            transition: all 0.3s ease;
+            font-size: large;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: #0069d9;
+            box-shadow: 0 0 10px #444;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+
+        }
+
+        .list {
+            width: 500px;
+            margin: 0 auto;
+            border-radius: 5px;
+            padding: 20px;
+            border: 1px solid #444;
+            box-shadow: 0 0 10px #444;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            background-color: #1e1e1e;
+
+        }
+
+        .inner-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .inner-list li {
+            margin-right: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #2e2e2e;
+            box-shadow: 0 0 10px #444;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            color: #e0e0e0;
+        }
+
+        .inner-list button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 20%;
+            height: 100%;
+        }
+        .gif {
+            width: 100%;
+            height: 300px;
+            border-radius: 5px
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="to-do">To Do List</label>
+        <input type="text">
+        <button type="submit" class="btn">Add</button>
+    </form>
+    <div class="list">
+        <img src="./bhai-kya-kar-raha-hai-tu-ashneer-grover.gif" id="img" alt="gif" class="gif">
+       
+        
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        const div = document.querySelector('.list');
+        var count=0;
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // const taskImage=document.getElementById('img');
+            // taskImage.setAttribute('src', './cry-sad.gif');
+            const input = document.querySelector('input');
+            const li = document.createElement('li');
+            const button = document.createElement('button');
+            const list = document.createElement('ul');
+            list.classList.add('inner-list');
+            const gif = document.querySelector('.gif');
+
+          
+
+            gif.src='./cry-sad.gif';
+            const cry=new Audio('./beancries.wav');
+            cry.play(); 
+           
+
+           
+            count++;
+            
+
+            li.textContent = input.value.trim();
+            if (li.textContent === '') {alert('Please enter a task'); return;}
+            div.appendChild(list);
+
+            button.textContent = 'Delete';
+            button.addEventListener('click', () => {
+              
+                list.removeChild(li);
+                list.removeChild(button);
+                div.removeChild(list);
+                count--;
+                gif.src='./delete.gif';
+                new Audio('./beanlaughs.wav').play()
+                
+
+               
+            });
+            
+            list.appendChild(li);
+            list.appendChild(button);
+            input.value = '';
+        });
+    </script>
+</body>
+</html>
